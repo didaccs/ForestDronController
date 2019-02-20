@@ -12,7 +12,7 @@ namespace TestForestDronController
         public void AreaToString_String()
         {
             Area area = new Area() { X = 2, Y = 5 };
-            const string expected = "(2,5)";
+            const string expected = "2x5";
 
             string result = area.ToStringArea();
 
@@ -34,7 +34,7 @@ namespace TestForestDronController
         [ExpectedException(typeof(InvalidAreaExeption))]
         public void StringSymbolsToArea_InvalidException() 
         {
-            string areaString = "(2,5)";
+            string areaString = "2x5";
 
             Area result = areaString.ParseArea();            
         }

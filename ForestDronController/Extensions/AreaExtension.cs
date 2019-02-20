@@ -9,7 +9,7 @@ namespace ForestDronController.Extensions
     {
         public static String ToStringArea(this Area area)
         {
-            return String.Format("({0},{1})", area.X, area.Y);
+            return String.Format("{0}x{1}", area.X, area.Y);
         }
 
         public static Area ParseArea(this string area)
