@@ -33,7 +33,7 @@ namespace TestForestDronController.Controllers
 
             DeviceController ctr = new DeviceController(location, area);
 
-            Assert.IsTrue(location.Equals(ctr.currentPosition));
+            Assert.IsTrue(location.Equals(ctr.CurrentPosition));
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace TestForestDronController.Controllers
             ctr.UpdateStartPosition(newLocation);
 
 
-            Assert.IsTrue(newLocation.Equals(ctr.currentPosition));
+            Assert.IsTrue(newLocation.Equals(ctr.CurrentPosition));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace TestForestDronController.Controllers
             ctr.ProcessMovements(list);
 
 
-            Assert.IsTrue(locationExpected.Equals(ctr.currentPosition));
+            Assert.IsTrue(locationExpected.Equals(ctr.CurrentPosition));
         }
 
         [TestMethod]
@@ -164,7 +164,7 @@ namespace TestForestDronController.Controllers
             ctr.UpdateStartPosition(new Location() { X = 1, Y = 2, Direction = Direction.North });
             ctr.ProcessMovements(list);
 
-            Assert.IsTrue(locationExpected.Equals(ctr.currentPosition));
+            Assert.IsTrue(locationExpected.Equals(ctr.CurrentPosition));
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ForestDronController.Entities
 {
     public class Instruction
     {
         public Location StartPosition { get; set; }
-        public Movement[] Movements { get; set; }
+        public List<Movement> Movements { get; set; }
     }
 }

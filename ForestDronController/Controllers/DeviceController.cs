@@ -12,9 +12,9 @@ namespace ForestDronController.Controllers
     /// </summary>
     public class DeviceController
     {
-        public Location startLocation { get; private set; }
-        public Location currentPosition { get; private set; }
-        public Area area { get; private set; }
+        public Location StartLocation { get; private set; }
+        public Location CurrentPosition { get; private set; }
+        public Area Area { get; private set; }
 
         /// <summary>
         /// Constructor with minimum parameters to process movements for a device.
@@ -24,13 +24,13 @@ namespace ForestDronController.Controllers
         /// <param name="area">The area where the device can make movements</param>
         public DeviceController(Location startLocation, Area area)
         {
-            this.startLocation = startLocation ?? throw new InvalidLocationException("null");
-            this.area = area ?? throw new InvalidAreaExeption("null");
+            this.StartLocation = startLocation ?? throw new InvalidLocationException("null");
+            this.Area = area ?? throw new InvalidAreaExeption("null");
             if (IsLocationOutOfArea(startLocation))
             {
                 throw new OutOfAreaException(startLocation);
             }
-            currentPosition = startLocation;
+            CurrentPosition = startLocation;
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace ForestDronController.Controllers
                 throw new OutOfAreaException(startPosition);
             }
 
-            currentPosition = startPosition;
-            startLocation = startPosition;
+            CurrentPosition = startPosition;
+            StartLocation = startPosition;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ForestDronController.Controllers
                 UpdateCurrentPosition(move);
             }
 
-            return currentPosition;
+            return CurrentPosition;
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace ForestDronController.Controllers
         /// <param name="movement"></param>
         private void UpdateCurrentPosition(Movement movement)
         {
-            currentPosition.Direction = currentPosition.Direction.ChangeDirection(movement);
+            CurrentPosition.Direction = CurrentPosition.Direction.ChangeDirection(movement);
 
             if (movement == Movement.Forward)
             {
-                currentPosition = MoveOneStepLocation();
+                CurrentPosition = MoveOneStepLocation();
             }
         }
 
@@ -86,9 +86,9 @@ namespace ForestDronController.Controllers
         private Location MoveOneStepLocation()
         {
             Location nextLocation = new Location(){
-                X = currentPosition.X,
-                Y = currentPosition.Y,
-                Direction = currentPosition.Direction
+                X = CurrentPosition.X,
+                Y = CurrentPosition.Y,
+                Direction = CurrentPosition.Direction
             };
 
             switch (nextLocation.Direction)
@@ -122,7 +122,7 @@ namespace ForestDronController.Controllers
         /// <returns></returns>
         private bool IsLocationOutOfArea(Location nextLocation)
         {
-            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X > area.X || nextLocation.Y > area.Y);
+            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X > Area.X || nextLocation.Y > Area.Y);
         }
     }
 }

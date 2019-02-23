@@ -7,6 +7,12 @@ namespace ForestDronController.Extensions
 {
     public static class DirectionExtension
     {
+        /// <summary>
+        /// Return direction with the movement parameter apllied
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="movement"></param>
+        /// <returns></returns>
         public static Direction ChangeDirection(this Direction direction,  Movement movement)
         {
             if (movement == Movement.Forward)
