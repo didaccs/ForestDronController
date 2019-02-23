@@ -91,6 +91,23 @@ namespace TestForestDronController.Controllers
         }
 
         [TestMethod]
+        [ExpectedException(typeof(OutOfAreaException))]
+        public void ProcessMovementoutOfArea_Exception()
+        {
+            Location location = new Location() { X = 3, Y = 3, Direction = Direction.East };
+            Area area = new Area() { X = 5, Y = 5 };
+            List<Movement> list = new List<Movement>()
+            {
+                Movement.Forward,
+                Movement.Forward,
+                Movement.Forward,
+            };
+            
+            DeviceController ctr = new DeviceController(location, area);
+            ctr.ProcessMovements(list);
+        }
+
+        [TestMethod]
         public void ProcessMovementAndUpdateStart_Location()
         {
             Location location = new Location() { X = 3, Y = 3, Direction = Direction.East };
