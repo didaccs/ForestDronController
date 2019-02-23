@@ -41,6 +41,15 @@ namespace TestForestDronController.Extensions
 
         [TestMethod]
         [ExpectedException(typeof(InvalidLocationException))]
+        public void StringBadDirectionToLocation_InvalidException()
+        {
+            string locationString = "1 2 Z";
+
+            Location result = locationString.ParseLocation();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidLocationException))]
         public void StringNullToLocation_InvalidException()
         {
             string locationString = string.Empty;

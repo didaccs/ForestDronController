@@ -62,10 +62,11 @@ namespace ForestDronConsole.Properties {
         
         /// <summary>
         ///   Busca una cadena traducida similar a To manage the dron you need to follow these instructions:
-        /// - Input into the first line the area
-        /// - Input into the second line the start position and direction
-        /// - Input into the third line the movements
-        ///Finally press intro and the dron start to move and show the current position..
+        /// 1- Input into the first line the area
+        /// 2- Input into the second line the start position and direction
+        /// 3- Input into the third line the movements
+        ///Repeat steps 2 and 3 for every drone you need to move. 
+        ///Finally press Intro to run the commands and the dron start to move and show the current position..
         /// </summary>
         internal static string Instructions {
             get {

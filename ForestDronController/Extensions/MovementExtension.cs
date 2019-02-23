@@ -31,12 +31,13 @@ namespace ForestDronController.Extensions
             //Check character value
             foreach (char movement in movements)
             {
-                if (!Movement.TryParse(typeof(Movement), ((int)movement).ToString(), out object move))
+
+                if (!Enum.IsDefined(typeof(Movement), (int)movement))                
                 {
                     throw new InvalidMovementException(movements);
                 }
 
-                resultMovements.Add((Movement)move);
+                resultMovements.Add((Movement)movement);
             }
 
             return resultMovements;

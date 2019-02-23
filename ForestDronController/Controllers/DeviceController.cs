@@ -122,7 +122,7 @@ namespace ForestDronController.Controllers
         /// <returns></returns>
         private bool IsLocationOutOfArea(Location nextLocation)
         {
-            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X > Area.X || nextLocation.Y > Area.Y);
+            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X >= Area.X || nextLocation.Y >= Area.Y);
         }
     }
 }

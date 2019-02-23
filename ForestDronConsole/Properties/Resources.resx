@@ -119,9 +119,10 @@
   </resheader>
   <data name="Instructions" xml:space="preserve">
     <value>To manage the dron you need to follow these instructions:
- - Input into the first line the area
- - Input into the second line the start position and direction
- - Input into the third line the movements
-Finally press intro and the dron start to move and show the current position.</value>
+ 1- Input into the first line the area
+ 2- Input into the second line the start position and direction
+ 3- Input into the third line the movements
+Repeat steps 2 and 3 for every drone you need to move. 
+Finally press Intro to run the commands and the dron start to move and show the current position.</value>
   </data>
 </root>

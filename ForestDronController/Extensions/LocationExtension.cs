@@ -51,7 +51,7 @@ namespace ForestDronController.Extensions
             }
 
             //Check character value
-            if (!Direction.TryParse(typeof(Direction), ((int)locationChars[4]).ToString(), out object dir))
+            if (!Enum.IsDefined(typeof(Direction), (int)locationChars[4]))
             {
                 throw new InvalidLocationException(location);
             }
@@ -60,12 +60,12 @@ namespace ForestDronController.Extensions
             double yLocation = Char.GetNumericValue(locationChars[2]);
 
             //check number values
-            if (xLocation <= 0 || yLocation <= 0 || xLocation >= int.MaxValue || yLocation >= int.MaxValue || dir == null)
+            if (xLocation < 0 || yLocation < 0 || xLocation >= int.MaxValue || yLocation >= int.MaxValue)
             {
                 throw new InvalidLocationException(location);
             }
 
-            return new Location { X = (int)xLocation, Y = (int)yLocation, Direction = (Direction)dir };
+            return new Location { X = (int)xLocation, Y = (int)yLocation, Direction = (Direction)locationChars[4] };
         }        
     }
 }

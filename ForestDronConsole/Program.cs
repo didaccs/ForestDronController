@@ -5,6 +5,7 @@ using ForestDronController.Exceptions;
 using System;
 using System.Collections.Generic;
 using ForestDronController.Controllers;
+using System.Linq;
 
 namespace ForestDronConsole
 {
@@ -12,69 +13,80 @@ namespace ForestDronConsole
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(Resources.Instructions);
-            Area area = GetArea();
-
-            DronController dronCtr = new DronController(area);
-
-            while (true)
+            bool exit = false;
+            while (!exit)
             {
-                Instruction instructions = GetInstructions();
-                dronCtr.ManageInstructions(instructions);
-                Console.WriteLine("Current position:" + dronCtr.CurrentPosition.ToStringLocation());
-                Console.WriteLine("You can add new start position and more movements and press intro.");
+                try
+                {
+                    UserInstructionsInput();
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);                    
+                }
+
                 Console.WriteLine();
+                Console.WriteLine("Press the Escape (Esc) key to quit or any other to restart.");
+                ConsoleKeyInfo cki = Console.ReadKey();
+                exit = cki.Key == ConsoleKey.Escape;
+            }
+
+        }
+        
+        private static void UserInstructionsInput()
+        {
+            Console.Clear();
+            Console.WriteLine(Resources.Instructions);
+            List<string> lines = GetStringInstructions();
+
+            if (lines.Count > 0)
+            {
+                RunInstructions(lines);
             }
         }
 
-        private static Area GetArea()
+        private static List<string> GetStringInstructions()
         {
-            Area area = null;
-            try
+            Boolean runCommands = false;
+            List<String> lines = new List<string>();
+
+            while (!runCommands)
             {
-                string areaStr = Console.ReadLine();
-                 area = areaStr.ParseArea();
-            }
-            catch (InvalidAreaExeption ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Insert a valid area:");                
+                string str = Console.ReadLine();
+                if (String.IsNullOrEmpty(str))
+                {
+                    runCommands = true;
+                }
+                else
+                {
+                    lines.Add(str);
+                }
             }
 
-            return area;
+            return lines;
         }
 
-        private static Instruction GetInstructions()
+        private static void RunInstructions(List<string> lines)
         {
-            Location startLocation = null;
-            List<Movement> movementsList = null;
-            try
+            List<Instruction> listInstructions = new List<Instruction>();
+            Area area = lines.First().ParseArea();
+            for (int idLine = 1; idLine < lines.Count; idLine = idLine + 2)
             {
-                string startPositionStr = Console.ReadLine();
-                startLocation = startPositionStr.ParseLocation();
-            }
-            catch (InvalidLocationException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Insert a valid location:");
+                Location location = lines[idLine].ParseLocation();
+                List<Movement> movements = lines[idLine + 1].ParseMovements();
+
+                listInstructions.Add(new Instruction() { StartPosition = location, Movements = movements });
             }
 
-            try
-            {
-                string movementsStr = Console.ReadLine();
-                movementsList = movementsStr.ParseMovements();
-            }
-            catch (InvalidLocationException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Insert valids movements:");
-            }
+            Console.WriteLine("Dron positions:");
 
-            return new Instruction()
+            foreach (Instruction instr in listInstructions)
             {
-                Movements = movementsList,
-                StartPosition = startLocation
-            };
+                DronController dronCtr = new DronController(area);
+                dronCtr.ManageInstructions(instr);
+                Console.WriteLine(dronCtr.CurrentPosition.ToStringLocation());
+            }
         }
     }
 }
