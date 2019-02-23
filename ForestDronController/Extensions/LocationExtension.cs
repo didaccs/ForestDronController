@@ -66,6 +66,6 @@ namespace ForestDronController.Extensions
             }
 
             return new Location { X = (int)xLocation, Y = (int)yLocation, Direction = (Direction)dir };
-        }
+        }        
     }
 }
