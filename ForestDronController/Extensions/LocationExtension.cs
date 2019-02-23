@@ -17,7 +17,14 @@ namespace ForestDronController.Extensions
         /// <returns></returns>
         public static String ToStringLocation(this Location location)
         {
-            return String.Format("{0} {1} {2}", location.X, location.Y, (char)location.Direction);
+            if (location == null)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return String.Format("{0} {1} {2}", location.X, location.Y, (char)location.Direction);
+            }
         }
 
         /// <summary>

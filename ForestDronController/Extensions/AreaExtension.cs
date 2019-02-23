@@ -17,7 +17,14 @@ namespace ForestDronController.Extensions
         /// <returns></returns>
         public static String ToStringArea(this Area area)
         {
-            return String.Format("{0}x{1}", area.X, area.Y);
+            if (area ==  null)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return String.Format("{0}x{1}", area.X, area.Y);
+            }
         }
 
         /// <summary>
