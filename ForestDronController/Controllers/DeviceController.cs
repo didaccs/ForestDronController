@@ -55,7 +55,7 @@ namespace ForestDronController.Controllers
         /// </summary>
         /// <param name="movements"></param>
         /// <returns></returns>
-        public Location ProcessMovements(List<Movement> movements)
+        public virtual Location ProcessMovements(List<Movement> movements)
         {
             foreach (Movement move in movements)
             {
@@ -83,7 +83,7 @@ namespace ForestDronController.Controllers
         /// Update the location of the current position
         /// </summary>
         /// <returns></returns>
-        private Location MoveOneStepLocation()
+        protected virtual Location MoveOneStepLocation()
         {
             Location nextLocation = new Location(){
                 X = CurrentPosition.X,
@@ -122,7 +122,7 @@ namespace ForestDronController.Controllers
         /// <returns></returns>
         private bool IsLocationOutOfArea(Location nextLocation)
         {
-            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X >= Area.X || nextLocation.Y >= Area.Y);
+            return (nextLocation.X < 0 || nextLocation.Y < 0 || nextLocation.X > Area.X || nextLocation.Y > Area.Y);
         }
     }
 }
