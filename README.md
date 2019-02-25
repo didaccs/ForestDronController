@@ -15,9 +15,9 @@ To compile a self packaged application (EXE file):
 
 ## Project description 
 In the solution 'ForestDronController.sln' there are three projects:
- 1 - ForestDronConsole: The project to input the instructions
- 2 - ForestDronController: The project to manage instructions and make the movements for every dron
- 3 - TestForestDronController: The project that contains the test for the project 'ForestDronController'
+ 1. ForestDronConsole: The project to input the instructions
+ 2. ForestDronController: The project to manage instructions and make the movements for every dron
+ 3. TestForestDronController: The project that contains the test for the project 'ForestDronController'
 
 ##  Initial requirements
 We send all the instructions at once.
