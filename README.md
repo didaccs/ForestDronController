@@ -7,9 +7,10 @@ To launch the program there are a few options:
     - Clone the repository: git clone https://github.com/didaccs/ForestDronController.git
     - Open with VisualStudio and press to RUN or F5 
  * Launch the published Application
-    - Download the <a href="https://github.com/didaccs/ForestDronController/releases">Last Release</a>
+    - Download the <a href="https://github.com/didaccs/ForestDronController/blob/master/ForestDronController-1.0.zip">ForestDronController-1.0.zip</a>
     - Unzip the file
     - Execute the 'ForestDronConsole.exe' or with the command console execute 'dotnet ForestDronConsole.dll'
+
 To compile a self packaged application (EXE file):
  - Execute 'dotnet publish --self-contained -c Release --runtime win-x64'
 
